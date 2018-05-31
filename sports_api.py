@@ -20,14 +20,26 @@ def show_teams():
     teams = db.query("SELECT * FROM sports_stats;")
     team_list = []
     for team in teams:
-        row_list = []
-        for item in team:
-            row_list.append(str(item))
+        team = team.as_dict()
+        row_list = {}
+        for key, value in team.items():
+            if str(value).isdigit():
+                value = int(value)
+            row_list[key] = value
         team_list.append(row_list)
     return jsonify(team_list)
 
+
 """
 teams = db.query("SELECT * FROM sports_stats;")
-team_list = teams.as_dict()
-print*(team_list)
+team_list = []
+for team in teams:
+    team = team.as_dict()
+    row_list = {}
+    for key, value in team.items():
+        if str(value).isdigit():
+            value = int(value)
+        row_list[key] = value
+    team_list.append(row_list)
+print(team_list)
 """
