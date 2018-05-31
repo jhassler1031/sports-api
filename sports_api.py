@@ -15,11 +15,13 @@ def show_json():
     return jsonify(list)
 
 #Display data from sports_stats table in sports_db
+#=========================================================================
 
 @app.route("/")
 def show_teams():
     return jsonify(db.query("SELECT * FROM sports_stats;").export('json'))
 
+#==========================================================================
 #long way below
 """
 @app.route("/")
